@@ -8,10 +8,10 @@ grammar Compression {
    token TOP { <term>+ }
    token term { [<letters> | <compressed>] }
    token compressed { <emptybrackets> | <letterset> }
-   token letterset { [ <number> \[ <TOP> \] ] }
+   token letterset { [ <number> '[' <TOP> ']' ] }
    token letters { <[a..z]>+ }
    token number { \d+ }
-   token emptybrackets { \[\] }
+   token emptybrackets { "[]" }
 }
 
 class Decompress {
