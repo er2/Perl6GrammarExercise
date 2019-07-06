@@ -1,5 +1,9 @@
 # https://techdevguide.withgoogle.com/paths/advanced/compress-decompression#
 
+use v6;
+
+unit module Compression;
+
 grammar Compression {
    token TOP { <term>+ }
    token term { [<letters> | <compressed>] }
@@ -15,7 +19,7 @@ class Decompress {
    method letters($/) { make ~$/ }
 }
 
-sub parse($corpus) {
+sub parse($corpus) is export {
    Compression.parse($corpus, actions => Decompress.new).made;
 }
 
