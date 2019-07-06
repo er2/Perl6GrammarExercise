@@ -16,4 +16,6 @@ is parse("0[abc]"), "";
 
 is parse("a[]b"), "ab";
 
-plan 5;
+is parse("2[3[a]b]"), "aaabaaab";
+
+plan 6;

@@ -8,7 +8,7 @@ grammar Compression {
    token TOP { <term>+ }
    token term { [<letters> | <compressed>] }
    token compressed { <emptybrackets> | <letterset> }
-   token letterset { [ <number> \[ <letters> \] ] }
+   token letterset { [ <number> \[ <TOP> \] ] }
    token letters { <[a..z]>+ }
    token number { \d+ }
    token emptybrackets { \[\] }
@@ -18,7 +18,7 @@ class Decompress {
    method TOP($/) { make [~] $<term>.map: *.made }
    method term($/) { make ($<letters> // $<compressed>).made }
    method compressed($/) { make ($<emptybrackets> // $<letterset>).made }
-   method letterset($/) { make $<letters>.made x +$<number> }
+   method letterset($/) { make $<TOP>.made x +$<number> }
    method letters($/) { make ~$/ }
    method emptybrackets($/) { "" }
 }
