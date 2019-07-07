@@ -4,9 +4,13 @@ use lib 'lib';
 
 use Test;
 
+# use-ok fatal;
+
 use-ok 'Compression';
 
 use Compression;
+
+is parse("abc"), "abc";
 
 is parse("3[a]"), "aaa";
 
@@ -18,4 +22,4 @@ is parse("a[]b"), "ab";
 
 is parse("2[3[a]b]"), "aaabaaab";
 
-plan 6;
+plan 7;
