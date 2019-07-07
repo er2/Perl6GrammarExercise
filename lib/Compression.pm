@@ -13,11 +13,10 @@ grammar Compression {
 }
 
 class Decompress {
-         method TOP($/)                     { make [~] $<term>.map: *.made }
-   multi method term($/ where $<letters>)   { make $<letters>.made }
-   multi method term($/ where $<letterset>) { make $<letterset>.made }
-         method letterset($/)               { make ($<TOP>.made // "") x +($<number> // 0) }
-         method letters($/)                 { make ~$/ }
+   method TOP($/)       { make [~] $<term>.map: *.made }
+   method term($/)      { make ($<letters> // $<letterset>).made }
+   method letterset($/) { make ($<TOP>.made // "") x +($<number> // 0) }
+   method letters($/)   { make ~$/ }
 }
 
 sub parse($corpus) is export {
